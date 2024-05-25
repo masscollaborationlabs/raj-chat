@@ -63,6 +63,10 @@ def start_server():
     server.listen(1)
     while True: 
         conn, addr = server.accept() 
+        name = ''
+        clients.append(conn)
+        thread = threading.Thread(target=handle_client, args=[conn, addr])
+        thread.start()
+        print("client connected : ", addr)
 
-
-
+start_server()
